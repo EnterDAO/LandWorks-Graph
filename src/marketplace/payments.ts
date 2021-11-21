@@ -1,8 +1,9 @@
-import { SetFee, SetTokenPayment } from '../../generated/FeeFacet/IFeeFacet';
+import { ClaimRentFee, SetFee, SetTokenPayment } from '../../generated/FeeFacet/IFeeFacet';
 import { PaymentToken } from '../../generated/schema';
 import { constants } from '../constants';
 import { IERC20Metadata } from '../../generated/FeeFacet/IERC20Metadata';
 import { Address } from '@graphprotocol/graph-ts';
+import { common } from '../common';
 
 export function handleSetFee(event: SetFee): void {
   const id = event.params._token;
@@ -27,6 +28,14 @@ export function handleSetTokenPayment(event: SetTokenPayment): void {
     // TODO: when you want to remove it
     // should we add an `enabled` column, storing this?
   }
+}
+
+export function handleClaimRentFee(event: ClaimRentFee): void {
+  const assetId = event.params._assetId.toString();
+  const asset = common.createAssetIfNotExists(assetId);
+  asset.unclaimedRentFee = asset.unclaimedRentFee.minus(event.params._amount);
+
+  asset.save();
 }
 
 function setERC20Data(id: Address, paymentToken: PaymentToken): PaymentToken {

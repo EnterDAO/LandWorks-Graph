@@ -1,6 +1,6 @@
 import { handleList, handleUpdateConditions, handleDelist, handleWithdraw } from './asset';
 import { handleSetMetaverseName, handleSetRegistry } from './metaverse';
-import { handleSetTokenPayment, handleSetFee } from './payments';
+import { handleSetTokenPayment, handleSetFee, handleClaimRentFee } from './payments';
 import { handleRent } from './rent';
 
 export {
@@ -17,7 +17,8 @@ export {
 
 export {
   handleSetTokenPayment,
-  handleSetFee
+  handleSetFee,
+  handleClaimRentFee
 };
 
 export {

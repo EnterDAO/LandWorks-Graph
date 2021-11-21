@@ -1,0 +1,70 @@
+type Overview @entity {
+    id: ID!
+    totalListings: BigInt!
+    totalRents: BigInt!
+    administrativeOperator: Bytes!
+}
+
+type Metaverse @entity {
+    id: ID!
+    name: String!
+    registries: [MetaverseRegistry!]
+}
+
+type MetaverseRegistry @entity {
+    id: ID!
+    name: String!
+    symbol: String!
+    metaverseId: Metaverse!
+}
+
+type PaymentToken @entity {
+    "Address of the token or 0x0 for ETH"
+    id: ID!
+    feePercentage: BigInt!
+    name: String!
+    symbol: String!
+    decimals: Int!
+}
+
+enum AssetStatus {
+    LISTED,
+    DELISTED,
+    WITHDRAWN
+}
+
+type Asset @entity {
+    id: ID!
+    metaverse: Metaverse!
+    metaverseRegistry: MetaverseRegistry!
+    metaverseAssetId: BigInt!
+    owner: User!
+    minPeriod: BigInt!
+    maxPeriod: BigInt!
+    maxFutureTime: BigInt!
+    paymentToken: PaymentToken!
+    unclaimedRentFee: BigInt!
+    pricePerSecond: BigInt!
+    lastRentEnd: BigInt!
+    status: AssetStatus!
+    rents: [Rent!]
+    totalRents: BigInt!
+    operator: Bytes
+}
+
+type Rent @entity {
+    "ID is generated: assetId-rentId"
+    id: ID!
+    asset: Asset!
+    renter: User!
+    start: BigInt!
+    end: BigInt!
+    fee: BigInt!
+    operator: Bytes
+}
+
+type User @entity {
+    id: ID!
+    assets: [Asset!]
+    rents: [Rent!]
+}

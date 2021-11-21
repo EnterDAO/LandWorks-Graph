@@ -1,0 +1,113 @@
+specVersion: 0.0.2
+description: Graph for LandWorks contracts
+repository: https://github.com/enterdao/LandWorks-Graph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: MarketplaceFacet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IMarketplaceFacet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - Metaverse
+        - MetaverseRegistry
+      abis:
+        - name: IMarketplaceFacet
+          file: ./abis/IMarketplaceFacet.json
+      eventHandlers:
+        - event: SetMetaverseName(uint256,string)
+          handler: handleSetMetaverse
+        - event: SetRegistry(uint256,address,bool)
+          handler: handleSetMetaverseRegistry
+        - event: List(uint256,uint256,address,uint256,uint256,uint256,uint256,address,uint256)
+          handler: handleList
+        - event: UpdateConditions(uint256,uint256,uint256,uint256,address,uint256)
+          handler: handleUpdateConditions
+        - event: Delist(uint256,indexed address)
+          handler: handleDelist
+        - event: Withdraw(uint256,indexed address)
+          handler: handleWithdraw
+        - event: ClaimRentFee(uint256,address,indexed address,uint256)
+          handler: handleClaimRentFee
+        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,uint256)
+          handler: handleRent
+      file: ./src/marketplace/mappings.ts
+  - kind: ethereum/contract
+    name: FeeFacet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IFeeFacet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - PaymentToken
+      abis:
+        - name: IFeeFacet
+          file: ./abis/IFeeFacet.json
+        - name: IERC20Metadata
+          file: ./abis/IERC20Metadata.json
+      eventHandlers:
+        - event: SetFee(address,uint256)
+          handler: handleSetFee
+        - event: SetTokenPayment(address,bool)
+          handler: handleSetTokenPayment
+      file: ./src/marketplace/mappings.ts
+  - kind: ethereum/contract
+    name: DecentralandFacet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IDecentralandFacet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Rent
+      abis:
+        - name: IDecentralandFacet
+          file: ./abis/IDecentralandFacet.json
+      eventHandlers:
+        - event: UpdateOperator(uint256,uint256,address)
+          handler: handleUpdateOperator
+        - event: UpdateState(uint256,uint256,address)
+          handler: handleUpdateState
+        - event: UpdateAdministrativeState(uint256,indexed address)
+          handler: handleUpdateAdministrativeState
+        - event: UpdateAdministrativeOperator(address)
+          handler: handleUpdateAdministrativeOperator
+      file: ./src/decentraland/mappings.ts
+  - kind: ethereum/contract
+    name: ERC721Facet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IERC721Facet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Asset
+      abis:
+        - name: IERC721Facet
+          file: ./abis/IERC721Facet.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransferERC721
+      file: ./src/erc721/mappings.ts

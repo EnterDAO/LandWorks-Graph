@@ -1,6 +1,8 @@
-import { Asset, Metaverse, Overview, Rent, User } from '../generated/schema';
-import { BigInt, Bytes } from '@graphprotocol/graph-ts';
+import { Asset, Metaverse, MetaverseRegistry, Overview, PaymentToken, Rent, User } from '../generated/schema';
+import { Address, BigInt, Bytes } from '@graphprotocol/graph-ts';
 import { constants } from './constants';
+import { IERC721Facet } from '../generated/ERC721Facet/IERC721Facet';
+import { IERC20Metadata } from '../generated/FeeFacet/IERC20Metadata';
 
 export namespace common {
   export function getOverview(): Overview {
@@ -44,6 +46,19 @@ export namespace common {
     return metaverse;
   }
 
+  export function createMetaverseRegistryIfNotExists(id: Address): MetaverseRegistry {
+    let registry = MetaverseRegistry.load(id.toHexString());
+    if (registry == null) {
+      registry = new MetaverseRegistry(id.toHexString());
+      const token = IERC721Facet.bind(id);
+      registry.name = token.name();
+      registry.symbol = token.symbol();
+      registry.save();
+    }
+
+    return registry;
+  }
+
   export function createAssetIfNotExists(id: string): Asset {
     let asset = Asset.load(id);
     if (asset == null) {
@@ -53,6 +68,18 @@ export namespace common {
     }
 
     return asset;
+  }
+
+  export function createTokenPaymentIfNotExists(id: Address): PaymentToken {
+    let paymentToken = PaymentToken.load(id.toHexString());
+
+    if (paymentToken == null) {
+      paymentToken = new PaymentToken(id.toHexString());
+      paymentToken = setERC20Data(id, paymentToken);
+      paymentToken.save();
+    }
+
+    return paymentToken;
   }
 
   export function createRentIfNotExists(id: string): Rent {
@@ -88,5 +115,20 @@ export namespace common {
     const asset = createAssetIfNotExists(id);
     asset.operator = address;
     asset.save();
+  }
+
+  function setERC20Data(id: Address, paymentToken: PaymentToken): PaymentToken {
+    if (id.equals(constants.ZERO_ADDRESS)) {
+      paymentToken.name = 'Ether';
+      paymentToken.symbol = 'ETH';
+      paymentToken.decimals = 18;
+    } else {
+      const token = IERC20Metadata.bind(id);
+      paymentToken.name = token.name();
+      paymentToken.symbol = token.symbol();
+      paymentToken.decimals = token.decimals();
+    }
+
+    return paymentToken;
   }
 }

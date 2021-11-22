@@ -16,6 +16,7 @@ type MetaverseRegistry @entity {
     name: String!
     symbol: String!
     metaverse: Metaverse!
+    isRemoved: Boolean!
 }
 
 type PaymentToken @entity {
@@ -25,6 +26,7 @@ type PaymentToken @entity {
     name: String!
     symbol: String!
     decimals: Int!
+    isRemoved: Boolean!
 }
 
 enum AssetStatus {

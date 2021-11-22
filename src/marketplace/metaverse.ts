@@ -11,24 +11,25 @@ export function handleSetMetaverseName(event: SetMetaverseName): void {
   metaverse.save();
 }
 
-export function handleSetRegistry(event: SetRegistry): void {
-  const metaverseId = event.params._metaverseId.toString();
-  const registryAddress = event.params._registry;
-  const id = registryAddress.toString();
+export function handleSetMetaverseRegistry(event: SetRegistry): void {
+  const metaverse = event.params._metaverseId.toString();
+
 
   if (event.params._status) {
-    let registry = MetaverseRegistry.load(id);
-    common.createMetaverseIfNotExists(id);
+    common.createMetaverseIfNotExists(metaverse);
 
+    const registryAddress = event.params._registry;
+    let registry = MetaverseRegistry.load(registryAddress.toHexString());
     if (registry == null) {
-      registry = new MetaverseRegistry(id);
+      registry = new MetaverseRegistry(registryAddress.toHexString());
       const token = IERC721Facet.bind(registryAddress);
       registry.name = token.name();
       registry.symbol = token.symbol();
     } else {
       // TODO: If it already exists and it is added to another Metaverse.
     }
-    registry.metaverseId = metaverseId;
+    registry.metaverse = metaverse;
+    registry.save();
   } else {
     // TODO: how to delete?
   }

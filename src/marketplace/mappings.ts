@@ -1,5 +1,5 @@
 import { handleList, handleUpdateConditions, handleDelist, handleWithdraw } from './asset';
-import { handleSetMetaverseName, handleSetRegistry } from './metaverse';
+import { handleSetMetaverseName, handleSetMetaverseRegistry } from './metaverse';
 import { handleSetTokenPayment, handleSetFee, handleClaimRentFee } from './payments';
 import { handleRent } from './rent';
 
@@ -12,7 +12,7 @@ export {
 
 export {
   handleSetMetaverseName,
-  handleSetRegistry
+  handleSetMetaverseRegistry
 };
 
 export {

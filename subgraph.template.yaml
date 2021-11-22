@@ -22,9 +22,11 @@ dataSources:
       abis:
         - name: IMarketplaceFacet
           file: ./abis/IMarketplaceFacet.json
+        - name: IERC721Facet
+          file: ./abis/IERC721Facet.json
       eventHandlers:
         - event: SetMetaverseName(uint256,string)
-          handler: handleSetMetaverse
+          handler: handleSetMetaverseName
         - event: SetRegistry(uint256,address,bool)
           handler: handleSetMetaverseRegistry
         - event: List(uint256,uint256,address,uint256,uint256,uint256,uint256,address,uint256)

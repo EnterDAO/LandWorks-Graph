@@ -70,8 +70,6 @@ export namespace common {
     let user = User.load(id);
     if (user == null) {
       user = new User(id);
-      user.rents = [];
-      user.assets = [];
       user.save();
     }
 

@@ -8,14 +8,14 @@ type Overview @entity {
 type Metaverse @entity {
     id: ID!
     name: String!
-    registries: [MetaverseRegistry!]
+    registries: [MetaverseRegistry!]! @derivedFrom(field: "metaverse")
 }
 
 type MetaverseRegistry @entity {
     id: ID!
     name: String!
     symbol: String!
-    metaverseId: Metaverse!
+    metaverse: Metaverse!
 }
 
 type PaymentToken @entity {
@@ -47,7 +47,7 @@ type Asset @entity {
     pricePerSecond: BigInt!
     lastRentEnd: BigInt!
     status: AssetStatus!
-    rents: [Rent!]
+    rents: [Rent!]! @derivedFrom(field: "asset")
     totalRents: BigInt!
     operator: Bytes
 }
@@ -65,6 +65,6 @@ type Rent @entity {
 
 type User @entity {
     id: ID!
-    assets: [Asset!]
-    rents: [Rent!]
+    assets: [Asset!]! @derivedFrom(field: "owner")
+    rents: [Rent!]! @derivedFrom(field: "renter")
 }

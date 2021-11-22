@@ -7,10 +7,10 @@ import { common } from '../common';
 
 export function handleSetFee(event: SetFee): void {
   const id = event.params._token;
-  let paymentToken = PaymentToken.load(id.toString());
+  let paymentToken = PaymentToken.load(id.toHexString());
 
   if (paymentToken == null) {
-    paymentToken = new PaymentToken(id.toString());
+    paymentToken = new PaymentToken(id.toHexString());
     paymentToken = setERC20Data(id, paymentToken);
   }
   paymentToken.feePercentage = event.params._fee;
@@ -21,7 +21,7 @@ export function handleSetFee(event: SetFee): void {
 export function handleSetTokenPayment(event: SetTokenPayment): void {
   const id = event.params._token;
   if (event.params._status) {
-    let paymentToken = new PaymentToken(id.toString());
+    let paymentToken = new PaymentToken(id.toHexString());
     paymentToken = setERC20Data(id, paymentToken);
     paymentToken.save();
   } else {

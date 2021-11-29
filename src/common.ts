@@ -1,4 +1,13 @@
-import { Asset, Metaverse, MetaverseRegistry, Overview, PaymentToken, Rent, User } from '../generated/schema';
+import {
+  Asset,
+  DecentralandData, LANDCoordinates,
+  Metaverse,
+  MetaverseRegistry,
+  Overview,
+  PaymentToken,
+  Rent,
+  User
+} from '../generated/schema';
 import { Address, BigInt, Bytes } from '@graphprotocol/graph-ts';
 import { constants } from './constants';
 import { IERC721Facet } from '../generated/ERC721Facet/IERC721Facet';
@@ -101,6 +110,32 @@ export namespace common {
     }
 
     return user;
+  }
+
+  export function createDecentralandDataIfNotExists(id: string, asset: string): DecentralandData {
+    let decentralandData = DecentralandData.load(id);
+    if (decentralandData == null) {
+      decentralandData = new DecentralandData(id);
+    }
+
+    decentralandData.asset = asset;
+    decentralandData.save();
+    return decentralandData;
+  }
+
+  export function createLANDCoordinatesIfNotExists(x: BigInt, y: BigInt, data: string): LANDCoordinates {
+    const id = `${x.toString()}-${y.toString()}`;
+    let landCoordinates = LANDCoordinates.load(id);
+    if (landCoordinates == null) {
+      landCoordinates = new LANDCoordinates(id);
+    }
+
+    landCoordinates.x = x;
+    landCoordinates.y = y;
+    landCoordinates.data = data;
+    landCoordinates.save();
+
+    return landCoordinates;
   }
 
   export function assetUpdateLatest(id: string, fee: BigInt, lastRentEnd: BigInt): void {

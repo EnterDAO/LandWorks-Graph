@@ -49,6 +49,7 @@ type Asset @entity {
     pricePerSecond: BigInt!
     lastRentEnd: BigInt!
     status: AssetStatus!
+    decentralandData: DecentralandData
     rents: [Rent!]! @derivedFrom(field: "asset")
     totalRents: BigInt!
     operator: Bytes
@@ -69,4 +70,19 @@ type User @entity {
     id: ID!
     assets: [Asset!]! @derivedFrom(field: "owner")
     rents: [Rent!]! @derivedFrom(field: "renter")
+}
+
+type DecentralandData @entity {
+    "ID is generated: registry-tokenId"
+    id: ID!
+    asset: Asset!
+    coordinates: [LANDCoordinates!]! @derivedFrom(field: "data")
+}
+
+type LANDCoordinates @entity {
+    "ID is generated: x-y"
+    id: ID!
+    x: BigInt!
+    y: BigInt!
+    data: DecentralandData!
 }

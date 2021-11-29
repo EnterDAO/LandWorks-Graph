@@ -24,6 +24,10 @@ dataSources:
           file: ./abis/IMarketplaceFacet.json
         - name: IERC721Facet
           file: ./abis/IERC721Facet.json
+        - name: EstateRegistry
+          file: ./abis/decentraland/EstateRegistry.json
+        - name: ILANDRegistry
+          file: ./abis/decentraland/ILANDRegistry.json
       eventHandlers:
         - event: SetMetaverseName(uint256,string)
           handler: handleSetMetaverseName

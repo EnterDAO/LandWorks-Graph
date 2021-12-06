@@ -16,6 +16,6 @@ export function handleSetMetaverseRegistry(event: SetRegistry): void {
   const registry = common.createMetaverseRegistryIfNotExists(registryAddress);
   common.createMetaverseIfNotExists(metaverse);
   registry.metaverse = metaverse;
-  registry.isRemoved = event.params._status;
+  registry.isRemoved = !event.params._status;
   registry.save();
 }

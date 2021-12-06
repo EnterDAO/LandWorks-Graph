@@ -13,12 +13,7 @@ export function handleSetTokenPayment(event: SetTokenPayment): void {
   const id = event.params._token;
 
   const paymentToken = common.createTokenPaymentIfNotExists(id);
-  if (event.params._status) {
-    paymentToken.isRemoved = false;
-  } else {
-
-  }
-  paymentToken.isRemoved = event.params._status;
+  paymentToken.isRemoved = !event.params._status;
   paymentToken.save();
 }
 

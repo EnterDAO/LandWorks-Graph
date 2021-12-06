@@ -43,7 +43,7 @@ dataSources:
           handler: handleWithdraw
         - event: ClaimRentFee(uint256,address,indexed address,uint256)
           handler: handleClaimRentFee
-        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,uint256)
+        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,address,uint256)
           handler: handleRent
       file: ./src/marketplace/mappings.ts
   - kind: ethereum/contract

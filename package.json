@@ -1,5 +1,5 @@
 {
-  "name": "LandWorks-Graph",
+  "name": "landworks-graph",
   "version": "1.0.0",
   "description": "Repository containing the Subgraph of LandWorks procotol",
   "main": "index.js",

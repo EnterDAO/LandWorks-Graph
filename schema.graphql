@@ -41,6 +41,7 @@ type Asset @entity {
     metaverseRegistry: MetaverseRegistry!
     metaverseAssetId: BigInt!
     owner: User!
+    consumer: User!
     minPeriod: BigInt!
     maxPeriod: BigInt!
     maxFutureTime: BigInt!
@@ -72,12 +73,14 @@ type User @entity {
     id: ID!
     assets: [Asset!]! @derivedFrom(field: "owner")
     rents: [Rent!]! @derivedFrom(field: "renter")
+    consumerTo: [Asset!]! @derivedFrom(field: "consumer")
 }
 
 type DecentralandData @entity {
     "ID is generated: registry-tokenId"
     id: ID!
     asset: Asset!
+    metadata: String!
     coordinates: [LANDCoordinates!]! @derivedFrom(field: "data")
 }
 

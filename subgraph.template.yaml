@@ -116,4 +116,6 @@ dataSources:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransferERC721
+        - event: ConsumerChanged(indexed address,indexed address,indexed uint256)
+          handler: handleConsumerChanged
       file: ./src/erc721/mappings.ts

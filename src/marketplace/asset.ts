@@ -57,8 +57,13 @@ function populateDecentralandData(registry: Address, tokenId: BigInt, asset: str
   const tryDecodeTokenId = LANDRegistry.try_decodeTokenId(tokenId);
 
   if (!tryDecodeTokenId.reverted) {
+    const x = tryDecodeTokenId.value.value0;
+    const y = tryDecodeTokenId.value.value1;
     const data = common.createDecentralandDataIfNotExists(id, asset);
-    common.createLANDCoordinatesIfNotExists(tryDecodeTokenId.value.value0, tryDecodeTokenId.value.value1, id);
+    data.metadata = LANDRegistry.landData(x, y);
+    data.save();
+
+    common.createLANDCoordinatesIfNotExists(x, y, id);
     return data.id;
   }
 
@@ -70,6 +75,8 @@ function populateDecentralandData(registry: Address, tokenId: BigInt, asset: str
 
   LANDRegistry = ILANDRegistry.bind(estateRegistry.registry());
   const data = common.createDecentralandDataIfNotExists(id, asset);
+  data.metadata = estateRegistry.getMetadata(tokenId);
+  data.save();
 
   const size = tryGetEstateSize.value.toI32();
   for (let i = 0; i < size; i++) {

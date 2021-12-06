@@ -53,6 +53,7 @@ type Asset @entity {
     decentralandData: DecentralandData
     rents: [Rent!]! @derivedFrom(field: "asset")
     totalRents: BigInt!
+    claimHistory: [ClaimHistory!]! @derivedFrom(field: "asset")
     operator: Bytes
 }
 
@@ -69,11 +70,24 @@ type Rent @entity {
     operator: Bytes
 }
 
+type ClaimHistory @entity {
+    "ID is generated: assetId-txHash-logIndex"
+    id: ID!
+    asset: Asset!
+    receiver: User!
+    paymentToken: PaymentToken!
+    amount: BigInt!
+    txHash: String!
+    "tx block.timestamp"
+    timestamp: BigInt!
+}
+
 type User @entity {
     id: ID!
     assets: [Asset!]! @derivedFrom(field: "owner")
     rents: [Rent!]! @derivedFrom(field: "renter")
     consumerTo: [Asset!]! @derivedFrom(field: "consumer")
+    claimHistory: [ClaimHistory!]! @derivedFrom(field: "receiver")
 }
 
 type DecentralandData @entity {

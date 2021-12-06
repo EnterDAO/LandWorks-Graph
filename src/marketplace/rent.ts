@@ -6,7 +6,7 @@ export function handleRent(event: EventRent): void {
   const rentId = `${assetId}-${event.params._rentId.toString()}`;
   const renter = event.params._renter.toHexString();
   const paymentToken = event.params._paymentToken;
-  common.createTokenPaymentIfNotExists(paymentToken);
+  common.createPaymentTokenIfNotExists(paymentToken);
 
   const rent = common.createRentIfNotExists(rentId);
   rent.asset = assetId;

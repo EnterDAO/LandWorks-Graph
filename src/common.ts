@@ -1,5 +1,5 @@
 import {
-  Asset,
+  Asset, ClaimHistory,
   DecentralandData, LANDCoordinates,
   Metaverse,
   MetaverseRegistry,
@@ -79,7 +79,7 @@ export namespace common {
     return asset;
   }
 
-  export function createTokenPaymentIfNotExists(id: Address): PaymentToken {
+  export function createPaymentTokenIfNotExists(id: Address): PaymentToken {
     let paymentToken = PaymentToken.load(id.toHexString());
 
     if (paymentToken == null) {
@@ -100,6 +100,16 @@ export namespace common {
     }
 
     return rent;
+  }
+
+  export function createClaimHistoryIfNotExists(id: string): ClaimHistory {
+    let claimHistory = ClaimHistory.load(id);
+    if (claimHistory == null) {
+      claimHistory = new ClaimHistory(id);
+
+      claimHistory.save();
+    }
+    return claimHistory;
   }
 
   export function createUserIfNotExists(id: string): User {

@@ -18,7 +18,7 @@ export function handleList(event: List): void {
   asset.paymentToken = event.params._paymentToken.toHexString();
   asset.pricePerSecond = event.params._pricePerSecond;
   asset.unclaimedRentFee = constants.BIGINT_ZERO;
-  asset.lastRentEnd = event.block.timestamp;
+  asset.lastRentEnd = constants.BIGINT_ZERO;
   asset.status = 'LISTED';
   asset.totalRents = constants.BIGINT_ZERO;
   asset.decentralandData = populateDecentralandData(event.params._metaverseRegistry, event.params._metaverseAssetId, assetId);

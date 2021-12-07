@@ -1,0 +1,29 @@
+{
+  "name": "landworks-graph",
+  "version": "1.0.0",
+  "description": "Repository containing the Subgraph of LandWorks procotol",
+  "main": "index.js",
+  "scripts": {
+    "build": "CONFIG=$npm_config_config GRAPH=local NO_DEPLOY=true ./deploy.sh",
+    "deploy:local": "CONFIG=$npm_config_config GRAPH=local ./deploy.sh",
+    "deploy:rinkeby": "CONFIG=$npm_config_config GRAPH=rinkeby ./deploy.sh",
+    "deploy:mainnet": "CONFIG=$npm_config_config GRAPH=mainnet ./deploy.sh",
+    "deploy:mainnet-remote": "CONFIG=$npm_config_config GRAPH=mainnet-remote ./deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnterDAO/LandWorks-Graph.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnterDAO/LandWorks-Graph/issues"
+  },
+  "homepage": "https://github.com/EnterDAO/LandWorks-Graph#readme",
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.23.2",
+    "@graphprotocol/graph-ts": "^0.23.1",
+    "mustache": "^4.2.0"
+  }
+}

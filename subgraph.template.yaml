@@ -19,6 +19,9 @@ dataSources:
         - Asset
         - Metaverse
         - MetaverseRegistry
+        - Rent
+        - Overview
+        - ClaimHistory
       abis:
         - name: IMarketplaceFacet
           file: ./abis/IMarketplaceFacet.json
@@ -82,6 +85,8 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
+        - Asset
+        - Overview
         - Rent
       abis:
         - name: IDecentralandFacet

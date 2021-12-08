@@ -25,3 +25,5 @@ There are `npm scripts` for all the stages of subgraph development.
 - [X] Get All Rents
 - [X] Get Users' assets
 - [X] Get Users' rents
+- [X] Get Users' consumers
+- [X] Get Users' claim history

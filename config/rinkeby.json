@@ -1,0 +1,6 @@
+{
+  "network": "rinkeby",
+  "description": "LandWorks-Graph (rinkeby)",
+  "startBlock": 9780523,
+  "Diamond": "0x7D531CA27bBBC53830951998c2ef3b156E583F75"
+}

@@ -1,6 +1,6 @@
 import {
   Asset, ClaimHistory,
-  DecentralandData, LANDCoordinates,
+  DecentralandData, CoordinatesLAND,
   Metaverse,
   MetaverseRegistry,
   Overview,
@@ -133,19 +133,19 @@ export namespace common {
     return decentralandData;
   }
 
-  export function createLANDCoordinatesIfNotExists(x: BigInt, y: BigInt, data: string): LANDCoordinates {
+  export function createCoordinatesLANDIfNotExists(x: BigInt, y: BigInt, data: string): CoordinatesLAND {
     const id = `${x.toString()}-${y.toString()}`;
-    let landCoordinates = LANDCoordinates.load(id);
-    if (landCoordinates == null) {
-      landCoordinates = new LANDCoordinates(id);
+    let coordinates = CoordinatesLAND.load(id);
+    if (coordinates == null) {
+      coordinates = new CoordinatesLAND(id);
     }
 
-    landCoordinates.x = x;
-    landCoordinates.y = y;
-    landCoordinates.data = data;
-    landCoordinates.save();
+    coordinates.x = x;
+    coordinates.y = y;
+    coordinates.data = data;
+    coordinates.save();
 
-    return landCoordinates;
+    return coordinates;
   }
 
   export function assetUpdateLatest(id: string, fee: BigInt, lastRentEnd: BigInt): void {

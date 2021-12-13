@@ -95,10 +95,10 @@ type DecentralandData @entity {
     id: ID!
     asset: Asset!
     metadata: String!
-    coordinates: [LANDCoordinates!]! @derivedFrom(field: "data")
+    coordinates: [CoordinatesLAND!]! @derivedFrom(field: "data")
 }
 
-type LANDCoordinates @entity {
+type CoordinatesLAND @entity {
     "ID is generated: x-y"
     id: ID!
     x: BigInt!

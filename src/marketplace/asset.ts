@@ -61,6 +61,7 @@ function populateDecentralandData(registry: Address, tokenId: BigInt, asset: str
     const y = tryDecodeTokenId.value.value1;
     const data = common.createDecentralandDataIfNotExists(id, asset);
     data.metadata = LANDRegistry.landData(x, y);
+    data.isLAND = true;
     data.save();
 
     common.createCoordinatesLANDIfNotExists(x, y, id);

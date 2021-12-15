@@ -1,12 +1,14 @@
 import { Rent as EventRent } from '../../generated/MarketplaceFacet/IMarketplaceFacet';
 import { common } from '../common';
+import { BigInt } from '@graphprotocol/graph-ts';
 
 export function handleRent(event: EventRent): void {
   const assetId = event.params._assetId.toString();
   const rentId = `${assetId}-${event.params._rentId.toString()}`;
   const renter = event.params._renter.toHexString();
   const paymentToken = event.params._paymentToken;
-  common.createPaymentTokenIfNotExists(paymentToken);
+  const payment = common.createPaymentTokenIfNotExists(paymentToken);
+  const unclaimedRentFee = event.params._fee.times(payment.feePercentage).div(BigInt.fromI32(100_000)); // TODO: update on version after audit
 
   const rent = common.createRentIfNotExists(rentId);
   rent.asset = assetId;
@@ -18,6 +20,6 @@ export function handleRent(event: EventRent): void {
   rent.renter = renter;
   rent.txHash = event.transaction.hash.toHexString();
   rent.save();
-  common.assetUpdateLatest(assetId, rent.fee, rent.end);
+  common.assetUpdateLatest(assetId, unclaimedRentFee, rent.end);
   common.incrementTotalRents();
 }

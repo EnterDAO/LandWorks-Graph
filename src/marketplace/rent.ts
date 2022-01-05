@@ -19,6 +19,7 @@ export function handleRent(event: EventRent): void {
   common.createUserIfNotExists(renter);
   rent.renter = renter;
   rent.txHash = event.transaction.hash.toHexString();
+  rent.timestamp = event.block.timestamp;
   rent.save();
   common.assetUpdateLatest(assetId, unclaimedRentFee, rent.end);
   common.incrementTotalRents();

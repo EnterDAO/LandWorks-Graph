@@ -67,6 +67,8 @@ type Rent @entity {
     paymentToken: PaymentToken!
     fee: BigInt!
     txHash: String!
+    "tx block.timestamp"
+    timestamp: BigInt!
     operator: Bytes
 }
 

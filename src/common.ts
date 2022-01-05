@@ -163,7 +163,7 @@ export namespace common {
   }
 
   function setERC20Data(id: Address, paymentToken: PaymentToken): PaymentToken {
-    if (id.equals(constants.ZERO_ADDRESS)) {
+    if (id.equals(constants.ONE_ADDRESS)) {
       paymentToken.name = 'Ether';
       paymentToken.symbol = 'ETH';
       paymentToken.decimals = 18;

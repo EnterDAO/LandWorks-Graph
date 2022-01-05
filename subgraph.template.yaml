@@ -32,21 +32,21 @@ dataSources:
         - name: ILANDRegistry
           file: ./abis/decentraland/ILANDRegistry.json
       eventHandlers:
-        - event: SetMetaverseName(uint256,string)
+        - event: SetMetaverseName(indexed uint256,string)
           handler: handleSetMetaverseName
-        - event: SetRegistry(uint256,address,bool)
+        - event: SetRegistry(indexed uint256,address,bool)
           handler: handleSetMetaverseRegistry
-        - event: List(uint256,uint256,address,uint256,uint256,uint256,uint256,address,uint256)
+        - event: List(uint256,uint256,indexed address,indexed uint256,uint256,uint256,uint256,indexed address,uint256)
           handler: handleList
-        - event: UpdateConditions(uint256,uint256,uint256,uint256,address,uint256)
+        - event: UpdateConditions(indexed uint256,uint256,uint256,uint256,indexed address,uint256)
           handler: handleUpdateConditions
-        - event: Delist(uint256,indexed address)
+        - event: Delist(indexed uint256,indexed address)
           handler: handleDelist
-        - event: Withdraw(uint256,indexed address)
+        - event: Withdraw(indexed uint256,indexed address)
           handler: handleWithdraw
-        - event: ClaimRentFee(uint256,address,indexed address,uint256)
+        - event: ClaimRentFee(indexed uint256,indexed address,indexed address,uint256)
           handler: handleClaimRentFee
-        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,address,uint256)
+        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,indexed address,uint256,uint256)
           handler: handleRent
       file: ./src/marketplace/mappings.ts
   - kind: ethereum/contract
@@ -68,9 +68,9 @@ dataSources:
         - name: IERC20Metadata
           file: ./abis/IERC20Metadata.json
       eventHandlers:
-        - event: SetFee(address,uint256)
+        - event: SetFee(indexed address,uint256)
           handler: handleSetFee
-        - event: SetTokenPayment(address,bool)
+        - event: SetTokenPayment(indexed address,bool)
           handler: handleSetTokenPayment
       file: ./src/marketplace/mappings.ts
   - kind: ethereum/contract
@@ -92,11 +92,11 @@ dataSources:
         - name: IDecentralandFacet
           file: ./abis/IDecentralandFacet.json
       eventHandlers:
-        - event: UpdateOperator(uint256,uint256,address)
+        - event: UpdateOperator(indexed uint256,uint256,indexed address)
           handler: handleUpdateOperator
-        - event: UpdateState(uint256,uint256,address)
+        - event: UpdateState(indexed uint256,uint256,indexed address)
           handler: handleUpdateState
-        - event: UpdateAdministrativeState(uint256,indexed address)
+        - event: UpdateAdministrativeState(indexed uint256,indexed address)
           handler: handleUpdateAdministrativeState
         - event: UpdateAdministrativeOperator(address)
           handler: handleUpdateAdministrativeOperator

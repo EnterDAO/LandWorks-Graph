@@ -54,6 +54,9 @@ type Asset @entity {
     rents: [Rent!]! @derivedFrom(field: "asset")
     totalRents: BigInt!
     claimHistory: [ClaimHistory!]! @derivedFrom(field: "asset")
+    txHash: String!
+    "tx block.timestamp"
+    timestamp: BigInt!
     operator: Bytes
 }
 

@@ -33,6 +33,18 @@ then
   # Remove manifest
   rm subgraph.yaml
   exit 0
+elif [ "$GRAPH" = "rinkeby-hosted" ]
+then
+  graph deploy --product hosted-service enterdao/landworks-rinkeby
+  # Remove manifest
+  rm subgraph.yaml
+  exit 0
+elif [ "$GRAPH" = "mainnet-hosted" ]
+then
+  graph deploy --product hosted-service enterdao/landworks
+  # Remove manifest
+  rm subgraph.yaml
+  exit 0
 fi
 
 # Create subgraph if missing

@@ -49,6 +49,7 @@ type Asset @entity {
     unclaimedRentFee: BigInt!
     pricePerSecond: BigInt!
     lastRentEnd: BigInt!
+    lastRentTimestamp: BigInt!
     status: AssetStatus!
     decentralandData: DecentralandData
     rents: [Rent!]! @derivedFrom(field: "asset")

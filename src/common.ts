@@ -148,11 +148,12 @@ export namespace common {
     return coordinates;
   }
 
-  export function assetUpdateLatest(id: string, fee: BigInt, lastRentEnd: BigInt): void {
+  export function assetUpdateLatest(id: string, fee: BigInt, lastRentEnd: BigInt, timestamp: BigInt): void {
     const asset = createAssetIfNotExists(id);
     asset.totalRents = asset.totalRents.plus(constants.BIGINT_ONE);
     asset.unclaimedRentFee = asset.unclaimedRentFee.plus(fee);
     asset.lastRentEnd = lastRentEnd;
+    asset.lastRentTimestamp = timestamp;
     asset.save();
   }
 

@@ -18,6 +18,6 @@ export function handleRent(event: EventRent): void {
   rent.txHash = event.transaction.hash.toHexString();
   rent.timestamp = event.block.timestamp;
   rent.save();
-  common.assetUpdateLatest(assetId, event.params._rent, rent.end);
+  common.assetUpdateLatest(assetId, event.params._rent, rent.end, event.block.timestamp);
   common.incrementTotalRents();
 }

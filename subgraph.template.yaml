@@ -124,3 +124,28 @@ dataSources:
         - event: ConsumerChanged(indexed address,indexed address,indexed uint256)
           handler: handleConsumerChanged
       file: ./src/erc721/mappings.ts
+  - kind: ethereum/contract
+    name: ConsumableAdapterFacet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IMetaverseConsumableAdapterFacet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - Rent
+      abis:
+        - name: IMetaverseConsumableAdapterFacet
+          file: ./abis/adapters/IMetaverseConsumableAdapterFacet.json
+      eventHandlers:
+        - event: UpdateRentConsumer(indexed uint256,uint256,indexed address)
+          handler: handleUpdateRentConsumer
+        - event: UpdateAdapterConsumer(indexed uint256,uint256,indexed address,indexed address)
+          handler: handleUpdateAdapterConsumer
+        - event: UpdateAdapterAdministrativeConsumer(indexed uint256,indexed address,indexed address)
+          handler: handleUpdateAdapterAdministrativeConsumer
+      file: ./src/adapters/mappings.ts

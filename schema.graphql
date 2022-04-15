@@ -74,6 +74,7 @@ type Rent @entity {
     "tx block.timestamp"
     timestamp: BigInt!
     operator: Bytes
+    metaverse: Metaverse!
 }
 
 type ClaimHistory @entity {

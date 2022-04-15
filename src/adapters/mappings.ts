@@ -1,7 +1,6 @@
 import { Rent } from '../../generated/schema';
 import { common } from '../common';
 import {
-  AdministrativeConsumerUpdated,
   UpdateAdapterAdministrativeConsumer,
   UpdateAdapterConsumer,
   UpdateRentConsumer

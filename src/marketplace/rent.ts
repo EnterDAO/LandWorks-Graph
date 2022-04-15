@@ -7,6 +7,7 @@ export function handleRent(event: EventRent): void {
   const renter = event.params._renter.toHexString();
   const paymentToken = event.params._paymentToken;
 
+  const asset = common.createAssetIfNotExists(assetId);
   const rent = common.createRentIfNotExists(rentId);
   rent.asset = assetId;
   rent.start = event.params._start;
@@ -17,6 +18,7 @@ export function handleRent(event: EventRent): void {
   rent.renter = renter;
   rent.txHash = event.transaction.hash.toHexString();
   rent.timestamp = event.block.timestamp;
+  rent.metaverse = asset.metaverse;
   rent.save();
   common.assetUpdateLatest(assetId, event.params._rent, rent.end, event.block.timestamp);
   common.incrementTotalRents();

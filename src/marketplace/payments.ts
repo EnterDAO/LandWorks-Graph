@@ -37,5 +37,6 @@ export function handleClaimRentFee(event: ClaimRentFee): void {
   claimHistory.timestamp = event.block.timestamp;
   claimHistory.amount = event.params._amount;
   claimHistory.paymentToken = paymentToken.toHexString();
+  claimHistory.metaverse = asset.metaverse;
   claimHistory.save();
 }

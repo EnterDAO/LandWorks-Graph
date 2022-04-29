@@ -6,7 +6,7 @@ export function handleSetMetaverseName(event: SetMetaverseName): void {
   const metaverse = common.createMetaverseIfNotExists(id);
   metaverse.name = event.params._name;
   if (event.params._name.toLowerCase() == 'cryptovoxels') {
-    metaverse.name = 'Cryptovoxels';
+    metaverse.name = 'Voxels';
   }
 
   metaverse.save();

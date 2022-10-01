@@ -5,6 +5,7 @@ import {
   MetaverseRegistry,
   Overview,
   PaymentToken,
+  ReferralReward,
   Rent,
   User
 } from '../generated/schema';
@@ -120,6 +121,19 @@ export namespace common {
     }
 
     return user;
+  }
+
+  export function createUserReferralRewardIfNotExists(user: string, paymentToken: string): ReferralReward {
+    const id = `${user}-${paymentToken}`;
+    let referralReward = ReferralReward.load(id);
+    if (referralReward == null) {
+      referralReward = new ReferralReward(id);
+      referralReward.user = user;
+      referralReward.paymentToken = paymentToken;
+      referralReward.save();
+    }
+
+    return referralReward;
   }
 
   export function createDecentralandDataIfNotExists(id: string, asset: string): DecentralandData {

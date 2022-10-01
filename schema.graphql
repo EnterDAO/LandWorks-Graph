@@ -98,6 +98,15 @@ type User @entity {
     rents: [Rent!]! @derivedFrom(field: "renter")
     consumerTo: [Asset!]! @derivedFrom(field: "consumer")
     claimHistory: [ClaimHistory!]! @derivedFrom(field: "receiver")
+    referralRewards: [ReferralReward!] @derivedFrom(field: "user")
+}
+
+type ReferralReward @entity {
+    "ID Is generated: user-paymentToken"
+    id: ID!
+    user: User!
+    paymentToken: PaymentToken!
+    amount: BigInt!
 }
 
 type DecentralandData @entity {

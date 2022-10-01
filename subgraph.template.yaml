@@ -46,8 +46,6 @@ dataSources:
           handler: handleWithdraw
         - event: ClaimRentFee(indexed uint256,indexed address,indexed address,uint256)
           handler: handleClaimRentFee
-        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,indexed address,uint256,uint256)
-          handler: handleRent
       file: ./src/marketplace/mappings.ts
   - kind: ethereum/contract
     name: FeeFacet
@@ -149,3 +147,49 @@ dataSources:
         - event: UpdateAdapterAdministrativeConsumer(indexed uint256,indexed address,indexed address)
           handler: handleUpdateAdapterAdministrativeConsumer
       file: ./src/adapters/mappings.ts
+  - kind: ethereum/contract
+    name: RentFacet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IRentFacet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - Rent
+        - User
+        - Overview
+        - ReferralReward
+      abis:
+        - name: IRentFacet
+          file: ./abis/IRentFacet.json
+      eventHandlers:
+        - event: Rent(indexed uint256,uint256,indexed address,uint256,uint256,indexed address,uint256,uint256)
+          handler: handleRent
+        - event: AccrueReferralFee(indexed uint256,uint256,indexed address,indexed address,uint256)
+          handler: handleAccrueReferralFee
+      file: ./src/marketplace/mappings.ts
+  - kind: ethereum/contract
+    name: ReferralFacet
+    network: {{network}}
+    source:
+      address: '{{Diamond}}'
+      abi: IReferralFacet
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ReferralReward
+      abis:
+        - name: IReferralFacet
+          file: ./abis/IReferralFacet.json
+      eventHandlers:
+        - event: ClaimReferrerFee(indexed address,indexed address,uint256)
+          handler: handleClaimReferrerFee
+      file: ./src/referrals/mappings.ts

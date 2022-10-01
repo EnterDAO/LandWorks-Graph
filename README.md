@@ -29,3 +29,4 @@ There are `npm scripts` for all the stages of subgraph development.
 - [X] Get Users' rents
 - [X] Get Users' consumers
 - [X] Get Users' claim history
+- [X] Get Users' referral rewards

@@ -165,7 +165,18 @@
       }
     ],
     "name": "claimRentFee",
-    "outputs": [],
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "paymentToken_",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rentFee_",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },

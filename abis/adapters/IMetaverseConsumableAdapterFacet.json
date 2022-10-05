@@ -160,6 +160,65 @@
     "inputs": [
       {
         "internalType": "uint256",
+        "name": "_metaverseId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_metaverseRegistry",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_metaverseAssetId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_minPeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_maxPeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_maxFutureTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_paymentToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_pricePerSecond",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_referrer",
+        "type": "address"
+      }
+    ],
+    "name": "listWithConsumableAdapter",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
         "name": "_assetId",
         "type": "uint256"
       },
@@ -211,10 +270,26 @@
         "internalType": "uint256",
         "name": "_amount",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_referrer",
+        "type": "address"
       }
     ],
     "name": "rentWithConsumer",
-    "outputs": [],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "rentId_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "rentStartsNow_",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "payable",
     "type": "function"
   },

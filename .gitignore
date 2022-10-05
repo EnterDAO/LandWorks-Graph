@@ -69,3 +69,6 @@ typings/
 
 # Docker-compose volumes
 /data
+
+# macOS
+.DS_Store

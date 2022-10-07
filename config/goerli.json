@@ -1,0 +1,6 @@
+{
+  "network": "goerli",
+  "description": "LandWorks-Graph (goerli)",
+  "startBlock": 7717193,
+  "Diamond": "0x45fdd921951f34aa44621a4f6f2b9ffc86ecb40b"
+}

@@ -6,8 +6,10 @@
   "scripts": {
     "build": "CONFIG=$npm_config_config GRAPH=local NO_DEPLOY=true ./deploy.sh",
     "deploy:local": "CONFIG=$npm_config_config GRAPH=local ./deploy.sh",
+    "deploy:goerli": "CONFIG=$npm_config_config GRAPH=goerli ./deploy.sh",
     "deploy:rinkeby": "CONFIG=$npm_config_config GRAPH=rinkeby ./deploy.sh",
     "deploy:mainnet": "CONFIG=$npm_config_config GRAPH=mainnet ./deploy.sh",
+    "deploy:goerli-hosted": "CONFIG=$npm_config_config GRAPH=goerli-hosted ./deploy.sh",
     "deploy:rinkeby-hosted": "CONFIG=$npm_config_config GRAPH=rinkeby-hosted ./deploy.sh",
     "deploy:mainnet-hosted": "CONFIG=$npm_config_config GRAPH=mainnet-hosted ./deploy.sh",
     "deploy:mainnet-remote": "CONFIG=$npm_config_config GRAPH=mainnet-remote ./deploy.sh"

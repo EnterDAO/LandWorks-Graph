@@ -19,6 +19,10 @@ if [ "$GRAPH" == "local" ]
 then
   IPFS_NODE="http://localhost:5001"
   GRAPH_NODE="http://127.0.0.1:8020"
+elif [ "$GRAPH" == "goerli" ]
+then
+  IPFS_NODE=""
+  GRAPH_NODE=""
 elif [ "$GRAPH" == "rinkeby" ]
 then
   IPFS_NODE=""
@@ -42,6 +46,12 @@ then
 elif [ "$GRAPH" = "mainnet-hosted" ]
 then
   graph deploy --product hosted-service enterdao/landworks
+  # Remove manifest
+  rm subgraph.yaml
+  exit 0
+elif [ "$GRAPH" = "goerli-hosted" ]
+then
+  graph deploy --product hosted-service enterdao/landworks-goerli
   # Remove manifest
   rm subgraph.yaml
   exit 0

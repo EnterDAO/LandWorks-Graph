@@ -148,7 +148,7 @@ export namespace common {
   }
 
   export function createCoordinatesLANDIfNotExists(x: BigInt, y: BigInt, data: string): CoordinatesLAND {
-    const id = `${x.toString()}-${y.toString()}`;
+    const id = `${data}.${x.toString()}.${y.toString()}`;
     let coordinates = CoordinatesLAND.load(id);
     if (coordinates == null) {
       coordinates = new CoordinatesLAND(id);

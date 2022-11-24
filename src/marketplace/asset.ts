@@ -54,7 +54,7 @@ export function handleWithdraw(event: Withdraw): void {
 }
 
 function populateDecentralandData(registry: Address, tokenId: BigInt, asset: string): string | null {
-  const id = `${registry.toHexString()}-${tokenId}`;
+  const id = `${asset}-${registry.toHexString()}-${tokenId}`;
   let LANDRegistry = ILANDRegistry.bind(registry);
   const tryDecodeTokenId = LANDRegistry.try_decodeTokenId(tokenId);
 

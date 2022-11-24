@@ -193,3 +193,23 @@ dataSources:
         - event: ClaimReferrerFee(indexed address,indexed address,uint256)
           handler: handleClaimReferrerFee
       file: ./src/referrals/mappings.ts
+  - kind: ethereum/contract
+    name: Distributor
+    network: {{network}}
+    source:
+      address: '{{Distributor}}'
+      abi: IDistributor
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ClaimHistory
+      abis:
+        - name: IDistributor
+          file: ./abis/IDistributor.json
+      eventHandlers:
+        - event: Claim(indexed address,indexed uint256)
+          handler: handleClaimDistribution
+      file: ./src/distributor/mappings.ts

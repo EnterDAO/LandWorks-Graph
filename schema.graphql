@@ -79,9 +79,9 @@ type Rent @entity {
 }
 
 type ClaimHistory @entity {
-    "ID is generated: assetId-txHash-logIndex"
+    "ID is generated: 'assetId-txHash-logIndex' or 'distributorAddress-txHash-logIndex'"
     id: ID!
-    asset: Asset!
+    asset: Asset
     receiver: User!
     paymentToken: PaymentToken!
     amount: BigInt!

@@ -2,5 +2,6 @@
     "network": "mainnet",
     "description": "LandWorks-Graph",
     "startBlock": 14043163,
-    "Diamond": "0x678d837fa15eba2b59f6cd5f9f4c580ac2dfc269"
+    "Diamond": "0x678d837fa15eba2b59f6cd5f9f4c580ac2dfc269",
+    "Distributor": "0xdB473d51c32073731c2EB54A9388fE5c0021404b"
 }

@@ -50,6 +50,7 @@ export function handleDelist(event: Delist): void {
 export function handleWithdraw(event: Withdraw): void {
   const asset = common.createAssetIfNotExists(event.params._assetId.toString());
   asset.status = 'WITHDRAWN';
+  asset.withdrawTimestamp = event.block.timestamp;
   asset.save();
 }
 
